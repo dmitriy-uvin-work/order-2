@@ -1,0 +1,25 @@
+@media (max-width: 992px) {
+    .purchasing-page__content {
+        padding-right: 0;
+        width: 100%;
+        flex: none;
+        position: inherit;
+    }
+    .purchasing-page__content .main-title {
+        margin-bottom: 0;
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    .purchasing-page__sidebar {
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    .purchasing-page .medium-container {
+        padding-top: 50px;
+        position: relative;
+    }
+    .purchasing-page .medium-container > .d-flex {
+        flex-direction: column-reverse;
+    }
+}

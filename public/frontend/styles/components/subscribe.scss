@@ -1,0 +1,21 @@
+.subscribe {
+  margin: 150px auto 0 auto;
+  max-width: 560px;
+  text-align: center;
+  &__form {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-top: 60px;
+    input {
+      flex: 1;
+      padding-left: 20px;
+      padding-right: 20px;
+      border: 1px solid var(--main-light-grey);
+      color: var(--main-grey);
+      border-right: none;
+    }
+  }
+}

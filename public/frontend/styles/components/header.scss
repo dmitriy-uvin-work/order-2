@@ -1,0 +1,49 @@
+header {
+  position: relative;
+  z-index: 2;
+}
+.header {
+  position: relative;
+  border-bottom: 1px solid #E0E0E0;
+  .fluid-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100px;
+    a {
+      color: #000000;
+      font-weight: 500;
+    }
+  }
+  nav {
+    display: flex;
+    a {
+      text-transform: uppercase;
+      font-size: 13px;
+      margin-right: 50px;
+    }
+  }
+  .logo {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -51px;
+    margin-top: -21px;
+    img {
+      width: 103px;
+    }
+  }
+  .right-side {
+    display: flex;
+    align-items: center;
+    .actions {
+      display: flex;
+      align-items: center;
+      margin-left: -10px;
+      margin-right: -10px;
+      a {
+        margin: 0 10px;
+      }
+    }
+  }
+}

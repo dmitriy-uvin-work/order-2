@@ -1,0 +1,34 @@
+.purchasing-page {
+  .main-title {
+    margin-bottom: 70px;
+  }
+  &__content {
+    flex: 1;
+    padding-right: 100px;
+  }
+  &__sidebar {
+    height: 100%;
+    width: 450px;
+    box-shadow: 0 2px 23px rgba(0, 0, 0, 0.06);
+    padding: 0 30px;
+    .product-min-card {
+      padding: 30px 0;
+      &:not(:last-child) {
+       border-bottom: 1px solid var(--main-light-grey);
+      }
+    }
+  }
+  .group {
+    margin-bottom: 50px;
+    &-label {
+      font-size: 18px;
+      margin-bottom: 50px;
+    }
+  }
+
+  .total {
+    & > span:last-child {
+      font-size: 20px;
+    }
+  }
+}

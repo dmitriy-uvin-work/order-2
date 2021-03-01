@@ -1,0 +1,52 @@
+.stock-card {
+  &--single {
+    margin-bottom: 30px;
+  }
+  &__text {
+    margin-bottom: 80px;
+  }
+  &__item {
+    width: 100%;
+    height: 100%;
+    display: block;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    padding: 80px 50% 80px 50px;
+    .stock-card--single & {
+      min-height: 500px;
+    }
+    .s-brand {
+      display: block;
+      img {
+        max-width: 195px;
+        max-height: 75px;
+      }
+    }
+    .s-title {
+      font-size: 42px;
+    }
+    .s-note {
+      font-size: 14px;
+      display: block;
+    }
+  }
+  .product-card {
+    &__top {
+      padding-bottom: 90%;
+    }
+    &__caption {
+      background-color: #F5F5F5;
+      padding-left: 30px;
+      padding-right: 30px;
+      padding-bottom: 30px;
+    }
+  }
+}
+
+
+.stock-view {
+  .rich-box-style {
+    padding-right: 100px;
+  }
+}

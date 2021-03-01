@@ -1,0 +1,44 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+before_script:
+  - apk add --no-cache python3 py-pip git rsync sshpass openssh curl
+  - pip install --no-cache-dir docker-compose==1.16.0
+  - mkdir -p ~/.ssh && chmod 777 ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - docker info
+stages:
+  - deploy
+  - notify
+dev:
+  stage: deploy
+  script:
+    - sshpass -p $SSH_PASS_PROD rsync -riz --links -e "ssh -o StrictHostKeyChecking=no" $SSH_DIRECTORY_LOCAL_PROD $SSH_USER_PROD@$SSH_HOST_PROD:$SSH_DIRECTORY_REMOTE_PROD
+      - sshpass -p $SSH_PASS_PROD ssh $SSH_USER_PROD@$SSH_HOST_PROD "export COMPOSER_ALLOW_SUPERUSER=1"
+      - sshpass -p $SSH_PASS_PROD ssh $SSH_USER_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_REMOTE_PROD && composer update --no-interaction"
+      - sshpass -p $SSH_PASS_PROD ssh $SSH_USER_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_REMOTE_PROD && php artisan migrate"
+#    - sshpass -p $SSH_PASS_DEV ssh $SSH_USER_DEV@$SSH_HOST_DEV "cd $SSH_DIRECTORY_REMOTE_DEV && sh initialize.sh"
+    #- sshpass -p $SSH_PASS_DEV ssh $SSH_USER_DEV@$SSH_HOST_DEV "cd $SSH_DIRECTORY_REMOTE_DEV && cd frontend/web/ && php generate_assets.php"
+    - sh .ci-notify.sh ✅
+  only:
+    - devlop
+
+prod:
+  stage: deploy
+  script:
+    - sshpass -p $SSH_PASS_PROD rsync -riz --links -e "ssh -o StrictHostKeyChecking=no" $SSH_DIRECTORY_LOCAL_PROD $SSH_USER_PROD@$SSH_HOST_PROD:$SSH_DIRECTORY_REMOTE_PROD
+    - sshpass -p $SSH_PASS_PROD ssh $SSH_USER_PROD@$SSH_HOST_PROD "export COMPOSER_ALLOW_SUPERUSER=1"
+    - sshpass -p $SSH_PASS_PROD ssh $SSH_USER_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_REMOTE_PROD && composer update --no-interaction"
+    - sshpass -p $SSH_PASS_PROD ssh $SSH_USER_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_REMOTE_PROD && php artisan migrate"
+#    - sshpass -p $SSH_PASS_PROD ssh $SSH_USER_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_REMOTE_PROD && sh initialize.sh"
+    #- sshpass -p $SSH_PASS_PROD ssh $SSH_USER_PROD@$SSH_HOST_PROD "cd $SSH_DIRECTORY_REMOTE_PROD && cd frontend/web/ && php generate_assets.php"
+    - sh .ci-notify.sh ✅
+  only:
+    - master
+notify_error:
+  stage: notify
+  script:
+    - sh .ci-error-notify.sh ❌
+  when: on_failure #deploy fail

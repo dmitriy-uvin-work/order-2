@@ -1,0 +1,41 @@
+.blog-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -25px;
+  margin-right: -25px;
+  margin-bottom: -50px;
+  &>div {
+    padding-left: 25px;
+    padding-right: 25px;
+    margin-bottom: 50px;
+    width: 33.333%;
+  }
+}
+
+
+.blog-card {
+  &__img {
+    padding-bottom: 59%;
+    display: block;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &__caption {
+    padding-top: 20px;
+    .b-title {
+      font-size: 20px;
+      line-height: 30px;
+      margin-bottom: 10px;
+    }
+    .b-date {
+      color: var(--main-grey);
+      margin-bottom: 10px;
+    }
+    .b-description {
+      color: #4F4F4F;
+      line-height: 20px;
+    }
+
+  }
+}
