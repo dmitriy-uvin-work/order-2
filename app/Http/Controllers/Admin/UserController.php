@@ -85,4 +85,12 @@ class UserController extends Controller
 
         return redirect()->back()->with('success', 'Успешно сохранено');
     }
+
+    public function destroy($id)
+    {
+
+        User::destroy($id);
+
+        return redirect()->back()->with('success', 'Пользователь удален');
+    }
 }

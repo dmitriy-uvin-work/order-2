@@ -94,8 +94,18 @@
                                                    onclick="updateUser(event, {{ $item->id }})"
                                                    class="label theme-bg text-white f-12 mb-0 mr-0 w-100">Посмотреть
                                                 </a>
+
+                                                <form action="{{ route('admin.user.destroy', $item->id) }}" method="POST">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                <button
+                                                   onclick="return confirm('Удалить {{ $item->name }}?')"
+                                                   class="label bg-danger text-white f-12 mt-1 mb-0 mr-0 w-100">Удалить
+                                                </button>
+                                                </form>
                                             </td>
                                         </tr>
+
                                     @endforeach
                                 @else
                                     <tr>
