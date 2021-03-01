@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('iid')->unique()->index();
+            $table->unsignedBigInteger('iid')->unique()->index();
             $table->string('name',255)->nullable();
             $table->string('slug', 255)->nullable();
             $table->float('price')->nullable();

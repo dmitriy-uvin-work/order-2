@@ -15,7 +15,7 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('iid')->unique()->index();
+            $table->unsignedBigInteger('iid')->unique()->index();
             $table->integer('parent_id')->nullable();
             $table->string('name', 100);
             $table->tinyInteger('deleted')->default(0);

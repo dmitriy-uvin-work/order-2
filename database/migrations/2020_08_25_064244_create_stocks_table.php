@@ -15,7 +15,7 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('iid')->unique()->index();
+            $table->unsignedBigInteger('iid')->unique()->index();
             $table->string('name', 255)->nullable();
             $table->string('short_description', 500)->nullable();
             $table->string('note', 255)->nullable();

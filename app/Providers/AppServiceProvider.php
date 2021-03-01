@@ -28,7 +28,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $connection = Schema::connection('pgsql');
+        $connection = Schema::connection('mysql');
 
         if ($connection->hasTable('settings')) {
             $settings = Setting::first();
